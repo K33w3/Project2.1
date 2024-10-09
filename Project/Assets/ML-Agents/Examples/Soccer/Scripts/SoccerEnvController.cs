@@ -96,23 +96,31 @@ public class SoccerEnvController : MonoBehaviour
 
     }
 
-    public void GoalTouched(Team scoredTeam)
-    {
-        if (scoredTeam == Team.Blue)
-        {
-            m_BlueAgentGroup.AddGroupReward(1 - (float)m_ResetTimer / MaxEnvironmentSteps);
-            m_PurpleAgentGroup.AddGroupReward(-1);
-        }
-        else
-        {
-            m_PurpleAgentGroup.AddGroupReward(1 - (float)m_ResetTimer / MaxEnvironmentSteps);
-            m_BlueAgentGroup.AddGroupReward(-1);
-        }
-        m_PurpleAgentGroup.EndGroupEpisode();
-        m_BlueAgentGroup.EndGroupEpisode();
-        ResetScene();
+    public void GoalTouched(Team scoredTeam, bool isOwnGoal = false)
+{
+    float scoreReward = 1 - (float)m_ResetTimer / MaxEnvironmentSteps;
 
+    if (isOwnGoal)
+    {
+        scoreReward = -0.5f;  // Penalty for scoring own goal
     }
+
+    if (scoredTeam == Team.Blue)
+    {
+        m_BlueAgentGroup.AddGroupReward(scoreReward);
+        m_PurpleAgentGroup.AddGroupReward(isOwnGoal ? 1.0f : -1.0f);
+    }
+    else
+    {
+        m_PurpleAgentGroup.AddGroupReward(scoreReward);
+        m_BlueAgentGroup.AddGroupReward(isOwnGoal ? 1.0f : -1.0f);
+    }
+
+    m_PurpleAgentGroup.EndGroupEpisode();
+    m_BlueAgentGroup.EndGroupEpisode();
+    ResetScene();
+}
+
 
 
     public void ResetScene()
