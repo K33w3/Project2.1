@@ -45,6 +45,7 @@ public class AgentSoccer : Agent
     BehaviorParameters m_BehaviorParameters;
     public Vector3 initialPos;
     public float rotSign;
+    float m_Aggressiveness = 1.0f;  // Level of aggressiveness, ranging from 0 to 1
 
     EnvironmentParameters m_ResetParams;
 
@@ -106,6 +107,12 @@ public class AgentSoccer : Agent
         var rightAxis = act[1];
         var rotateAxis = act[2];
 
+        if (position == Position.Striker && UnityEngine.Random.value < m_Aggressiveness)
+        {
+            // Increase forward speed when aggressiveness is high
+            m_ForwardSpeed *= 1.5f;
+        }
+
         switch (forwardAxis)
         {
             case 1:
@@ -141,6 +148,7 @@ public class AgentSoccer : Agent
         agentRb.AddForce(dirToGo * m_SoccerSettings.agentRunSpeed,
             ForceMode.VelocityChange);
     }
+
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
 
