@@ -4,9 +4,9 @@
 
 ## Overview
 
-This project builds on the **Unity ML-Agents Toolkit** originally developed by Unity Technologies. Our work focuses on integrating **multi-modal sensory inputs**, specifically adding **auditory sensors** to Unity's **Soccer Twos** environment. The goal is to create AI agents that can make decisions using both visual and auditory information, leading to more dynamic and responsive behaviors, especially when the soccer ball or other objects are out of the agents' line of sight.
+This project builds on the **Unity ML-Agents Toolkit** originally developed by Unity Technologies. Our focus is on incorporating **multi-modal sensory inputs**, specifically by adding **auditory sensors** to Unity's **Soccer Twos** environment. The primary goal is to create AI agents that can make decisions using both visual and auditory information, resulting in more realistic and adaptive behaviour, especially when objects like the soccer ball are not within the agent's line of sight.
 
-We use advanced **Reinforcement Learning (RL)** algorithms like **Proximal Policy Optimization (PPO)** and **Multi-Agent Deep Deterministic Policy Gradient (MADDPG)** to train agents in both single-agent and multi-agent setups. These agents are evaluated on tasks such as scoring goals, defending, and coordinating in both competitive and cooperative settings.
+We use advanced **Reinforcement Learning (RL)** algorithms like **Proximal Policy Optimization (PPO)** and **Multi-Agent Deep Deterministic Policy Gradient (MADDPG)**, which are already available within the ML-Agent toolkit, to train agents in both single-agent and multi-agent setups. These agents are evaluated on tasks such as scoring goals, defending, and coordinating in both competitive and cooperative settings.
 
 Beyond Soccer Twos, we also evaluate how well these trained agents generalize to other Unity environments, including **Push Block**, **GridWorld**, and **Crawler**.
 
@@ -26,7 +26,7 @@ We benchmark these multi-modal agents against traditional visual-only agents to 
 
 ## Resources and Links
 
-For more information on the original ML-Agents Toolkit and how to get started, check out these resources:
+For more information on the original ML-Agents Toolkit, the resources and original documentation is listed below:
 
 - [ML-Agents Overview](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/ML-Agents-Overview.md)
 - [Unity Environment Control from Python](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Python-LLAPI.md)
