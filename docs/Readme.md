@@ -1,4 +1,4 @@
-# Unity ML-Agents Toolkit - Multi-Modal AI Agents in Unity
+# Unity ML-Agents Toolkit - Multi-Modal AI Agents in Unity - Team AIML 6
 
 **[Latest Release](https://github.com/Unity-Technologies/ml-agents/releases/latest)** | **[All Releases](https://github.com/Unity-Technologies/ml-agents/releases)**
 
