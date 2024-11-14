@@ -12,7 +12,7 @@ Beyond Soccer Twos, we also evaluate how well these trained agents generalize to
 
 ## Project Goals
 
-This project aims to demonstrate how combining **visual and auditory inputs** can improve AI agent decision-making. Specifically, in Soccer Twos, auditory sensors enable agents to track the ball when it's out of sight, leading to smarter and more proactive responses.
+This project aims to demonstrate how combining **visual and auditory inputs** can improve AI agent decision-making. Specifically, in Soccer Twos, auditory sensors enable agents to track the ball when it's out of sight, leading to smarter responses.
 
 Our experiments include:
 
@@ -33,6 +33,3 @@ For more information on the original ML-Agents Toolkit, the resources and origin
 - [Reinforcement Learning Algorithms](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Training-ML-Agents.md)
 - [Latest Documentation](https://unity-technologies.github.io/ml-agents/)
 - [Installation and Setup Instructions](https://github.com/Unity-Technologies/ml-agents/blob/main/docs/Installation.md)
-
-If you are conducting research using the ML-Agents Toolkit, please cite the following paper:
-
