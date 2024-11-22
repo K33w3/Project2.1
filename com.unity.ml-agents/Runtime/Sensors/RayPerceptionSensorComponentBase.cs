@@ -329,7 +329,7 @@ namespace Unity.MLAgents.Sensors
 
         void OnDrawGizmosSelected()
         {
-            if (m_RaySensor?.RayPerceptionOutput?.RayOutputs != null || m_RaySensor?.RayPerceptionOutput?.RayOutputs.Length > 0)
+            if (m_RaySensor?.RayPerceptionOutput?.RayOutputs != null)
             {
                 // If we have cached debug info from the sensor, draw that.
                 // Draw "old" observations in a lighter color.
