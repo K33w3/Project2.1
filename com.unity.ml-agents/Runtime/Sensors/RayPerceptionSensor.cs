@@ -195,7 +195,13 @@ namespace Unity.MLAgents.Sensors
                 get
                 {
                     var rayDirection = EndPositionWorld - StartPositionWorld;
-                    return rayDirection.magnitude;
+                    var length = rayDirection.magnitude;
+
+                    if(rayDirection.x < 0)
+                    {
+                        length = 0;
+                    }
+                    return length;
                 }
             }
 
