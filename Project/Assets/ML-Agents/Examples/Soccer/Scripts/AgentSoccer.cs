@@ -34,7 +34,7 @@ public class AgentSoccer : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Sound"))
+        if (other.CompareTag("SoundOnColide"))
         {
             DiskBehavior collidedObject = other.GetComponent<DiskBehavior>();
 
