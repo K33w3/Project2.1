@@ -18,6 +18,11 @@ public class SoundSensor : ISensor
         m_SoundData = soundData;
     }
 
+    public SoundSensorData GetSoundData(SoundSensor sound)
+    {
+        return sound.m_SoundData;
+    }
+
     public ObservationSpec GetObservationSpec()
     {
         return m_ObservationSpec;

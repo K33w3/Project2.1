@@ -5,6 +5,7 @@ using Unity.MLAgents.Sensors;
 public class SoundSensorComponent : SensorComponent
 {
     private SoundSensor m_Sensor;
+    // private SoundSensorData m_SoundData;
 
     public override ISensor[] CreateSensors()
     {
@@ -14,6 +15,13 @@ public class SoundSensorComponent : SensorComponent
 
     public void SetSoundData(SoundSensorData soundData)
     {
-        m_Sensor.SetSoundData(soundData);
+         m_Sensor.SetSoundData(soundData);
+        // m_SoundData = soundData;
     }
-}
+
+
+    public SoundSensorData GetSoundData()
+    {
+        return m_Sensor.GetSoundData(m_Sensor);
+    }
+    }
