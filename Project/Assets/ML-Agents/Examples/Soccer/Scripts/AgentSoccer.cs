@@ -38,7 +38,7 @@ public class AgentSoccer : Agent
     EnvironmentParameters m_ResetParams;
 
     // Sound Sensor Data
-    private SoundSensorData m_SoundData;
+    // private SoundSensorData m_SoundData;
     public SoundSensorComponent soundSensorComponent;
 
     public override void Initialize()
@@ -95,80 +95,110 @@ public class AgentSoccer : Agent
         {
             Debug.LogError("SoundSensorCompoennt is missing on the agent. ");
         }
+
+             
     
     }
 
-     public override void CollectObservations(VectorSensor sensor)
-    {
-        if (sensor == null)
-        {
-            Debug.LogError("VectorSensor is null in CollectObservations.");
-            return;
-        }
+    //  public override void CollectObservations(VectorSensor sensor)
+    // {
 
-        if (transform == null)
-        {
-            Debug.LogError("Transform is null in CollectObservations.");
-            return;
-        }
+    //      if (sensor == null)
+    //     {
+    //         Debug.LogError("VectorSensor is null in CollectObservations.");
+    //         return;
+    //     } else{
+    //         sensor = GetComponent<VectorSensor>();
+    //     }
 
-        // Agent's local position
-        sensor.AddObservation(transform.localPosition);
+    //     // Agent's local position
+    //     sensor.AddObservation(transform.localPosition);
 
-        // Agent's velocity
-        if (agentRb != null)
-        {
-            sensor.AddObservation(agentRb.velocity);
-        }
-        else
-        {
-            Debug.LogError("Rigidbody component is missing on agent.");
-            sensor.AddObservation(Vector3.zero);
-        }
+    //     // Agent's velocity
+    //     sensor.AddObservation(agentRb != null ? agentRb.velocity : Vector3.zero);
 
-        // Ball's position
-        GameObject ball = GameObject.FindGameObjectWithTag("SoundOnColide");
-        if (ball != null)
-        {
-            sensor.AddObservation(ball.transform.localPosition);
-        }
-        else
-        {
-            Debug.LogError("Ball tagged with 'SoundOnColide' not found in the scene.");
-            sensor.AddObservation(Vector3.zero);
-        }
+    //     // Ball's position
+    //     GameObject ball = GameObject.FindGameObjectWithTag("SoundOnColide");
+    //     sensor.AddObservation(ball != null ? ball.transform.localPosition : Vector3.zero);
 
-        // Team information
-        sensor.AddObservation((int)team);
+    //     // Team information
+    //     sensor.AddObservation((int)team);
+    //     // if (sensor == null)
+    //     // {
+    //     //     Debug.LogError("VectorSensor is null in CollectObservations.");
+    //     //     return;
+    //     // }
 
-        // Sound data observations
-        if (soundSensorComponent != null)
-        {
-            var soundData = soundSensorComponent.GetSoundData();
-            if (soundData != null)
-            {
-                // Normalize the time (assuming max time of 10 seconds)
-                sensor.AddObservation(soundData.Time / 10f);
-                // Normalize position (assuming play area is within -50 to 50 units)
-                sensor.AddObservation(soundData.Coordinates / 50f);
-            }
-            else
-            {
-                // No sound detected
-                sensor.AddObservation(0f);
-                sensor.AddObservation(Vector3.zero);
-            }
-        }
-        else
-        {
-            Debug.LogError("SoundSensorComponent is null in CollectObservations.");
-        }
-    }
+    //     // if (transform == null)
+    //     // {
+    //     //     Debug.LogError("Transform is null in CollectObservations.");
+    //     //     return;
+    //     // }
 
-    public void ReceiveSoundData(SoundSensorData soundData)
-    {
-        m_SoundData = soundData;
-    }
+    //     // // Agent's local position
+    //     // sensor.AddObservation(transform.localPosition);
+
+    //     // // Agent's velocity
+    //     // if (agentRb != null)
+    //     // {
+    //     //     sensor.AddObservation(agentRb.velocity);
+    //     // }
+    //     // else
+    //     // {
+    //     //     Debug.LogError("Rigidbody component is missing on agent.");
+    //     //     sensor.AddObservation(Vector3.zero);
+    //     // }
+
+    //     // // Ball's position
+    //     // GameObject ball = GameObject.FindGameObjectWithTag("SoundOnColide");
+    //     // if (ball != null)
+    //     // {
+    //     //     sensor.AddObservation(ball.transform.localPosition);
+    //     // }
+    //     // else
+    //     // {
+    //     //     Debug.LogError("Ball tagged with 'SoundOnColide' not found in the scene.");
+    //     //     sensor.AddObservation(Vector3.zero);
+    //     // }
+
+    //     // // Team information
+    //     // sensor.AddObservation((int)team);
+
+    //     // // Sound data observations
+    //     // if (soundSensorComponent != null)
+    //     // {
+    //     //     var soundData = soundSensorComponent.GetSoundData();
+    //     //     if (soundData != null)
+    //     //     {
+    //     //         // Normalize the time (assuming max time of 10 seconds)
+    //     //         sensor.AddObservation(soundData.Time / 10f);
+    //     //         // Normalize position (assuming play area is within -50 to 50 units)
+    //     //         sensor.AddObservation(soundData.Coordinates / 50f);
+    //     //     }
+    //     //     else
+    //     //     {
+    //     //         // No sound detected
+    //     //         sensor.AddObservation(0f);
+    //     //         sensor.AddObservation(Vector3.zero);
+    //     //     }
+    //     // }
+    //     // else
+    //     // {
+    //     //     Debug.LogError("SoundSensorComponent is null in CollectObservations.");
+    //     // }
+    // }
+
+//     public void ReceiveSoundData(SoundSensorData soundData)
+// {
+//     if (soundSensorComponent != null)
+//     {
+//         soundSensorComponent.SetSoundData(soundData);
+//     }
+//     else
+//     {
+//         Debug.LogError("SoundSensorComponent is missing on agent.");
+//     }
+// }
 
     public void MoveAgent(ActionSegment<int> act)
     {
@@ -275,18 +305,21 @@ public class AgentSoccer : Agent
         }
 
         // Generate sound data when the ball hits a wall
-        if (c.gameObject.CompareTag("SoundOnColide"))
-        {
-            float timeDelay = Time.time;
-            Vector3 soundCoords = c.contacts[0].point;
-            var soundData = new SoundSensorData(timeDelay, soundCoords);
-            ReceiveSoundData(soundData);
-        }
+        // if (c.gameObject.CompareTag("Sound"))
+        // {
+        //     float timeDelay = Time.time;
+        //     Vector3 soundCoords = c.contacts[0].point;
+        //     var soundData = new SoundSensorData(timeDelay, soundCoords);
+        //     ReceiveSoundData(soundData);
+        // }
+
+         // Read sound data when colliding with a sound object
+
     }
 
     public override void OnEpisodeBegin()
     {
         m_BallTouch = m_ResetParams.GetWithDefault("ball_touch", 0);
-        m_SoundData = null; // Reset sound data at the beginning of the episode
+        // m_SoundData = null; // Reset sound data at the beginning of the episode
     }
 }

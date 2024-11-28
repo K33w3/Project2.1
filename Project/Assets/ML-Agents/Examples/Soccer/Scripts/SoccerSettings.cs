@@ -1,4 +1,4 @@
-ssusing UnityEngine;
+using UnityEngine;
 
 public class SoccerSettings : MonoBehaviour
 {
