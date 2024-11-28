@@ -8,12 +8,13 @@ public class RayPerceptionSensorShortend : RayPerceptionSensorComponentBase
     [HideInInspector, SerializeField, Range(0, 90)]
     private float limitedMaxRayDegrees = 45f;
 
+    private RayPerceptionSensor customRaySensor;
+
     public override RayPerceptionCastType GetCastType()
     {
         return RayPerceptionCastType.Cast3D;
     }
 
-    // Use 'new' keyword to hide the base property
     public new float MaxRayDegrees
     {
         get => limitedMaxRayDegrees;
@@ -24,13 +25,10 @@ public class RayPerceptionSensorShortend : RayPerceptionSensorComponentBase
         }
     }
 
-    // Create your custom GetRayAngles method
     private float[] GetCustomRayAngles(int raysPerDirection, float maxRayDegrees)
     {
-        // Limit the maxRayDegrees to 45 degrees (left and right), resulting in a 90-degree FOV.
         maxRayDegrees = Mathf.Min(limitedMaxRayDegrees, 45f);
 
-        // Calculate the ray angles for a 90-degree FOV.
         var anglesOut = new float[2 * raysPerDirection + 1];
         var delta = maxRayDegrees / raysPerDirection;
 
@@ -42,7 +40,6 @@ public class RayPerceptionSensorShortend : RayPerceptionSensorComponentBase
         return anglesOut;
     }
 
-    // Use 'new' to hide GetRayPerceptionInput
     public new RayPerceptionInput GetRayPerceptionInput()
     {
         var rayAngles = GetCustomRayAngles(RaysPerDirection, MaxRayDegrees);
@@ -64,23 +61,21 @@ public class RayPerceptionSensorShortend : RayPerceptionSensorComponentBase
         return rayPerceptionInput;
     }
 
-    // Override CreateSensors to use your custom input
     public override ISensor[] CreateSensors()
     {
         var rayPerceptionInput = GetRayPerceptionInput();
 
-        m_RaySensor = new RayPerceptionSensor(SensorName, rayPerceptionInput);
+        customRaySensor = new RayPerceptionSensor(SensorName, rayPerceptionInput);
 
         if (ObservationStacks != 1)
         {
-            var stackingSensor = new StackingSensor(m_RaySensor, ObservationStacks);
+            var stackingSensor = new StackingSensor(customRaySensor, ObservationStacks);
             return new ISensor[] { stackingSensor };
         }
 
-        return new ISensor[] { m_RaySensor };
+        return new ISensor[] { customRaySensor };
     }
 
-    // Optionally override the Start and End Vertical Offsets if needed
     public override float GetStartVerticalOffset()
     {
         return StartVerticalOffset;
