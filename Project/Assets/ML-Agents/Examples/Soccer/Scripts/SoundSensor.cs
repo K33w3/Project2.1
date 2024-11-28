@@ -10,15 +10,15 @@ public class SoundSensor :  MonoBehaviour,ISensor
 
     private string m_Name;
     // private ObservationWriter writer;
-    private Vector4 allData;
-    // private Vector3 angles;
-    // private Vector3 coordinates;   
+    private Vector3 coordonates;
+    private Vector3 anglesAndTime;
+     
     private ObservationSpec m_ObservationSpec;
 
     public SoundSensor(string name)
     {
         m_Name = name;
-        m_ObservationSpec = ObservationSpec.Vector(10); // 1 for Time, 3 for Coordinates
+        m_ObservationSpec = ObservationSpec.Vector(6); // 1 for Time, 3 for Coordinates
         // this.writer  = new ObservationWriter();
     }
 
@@ -29,22 +29,17 @@ public class SoundSensor :  MonoBehaviour,ISensor
 
     public int Write(ObservationWriter writer)
     {
-        Debug.Log("Writing Sound Data");
+        // Debug.Log("Writing Sound Data");
         // writer.Add(allData);  
-        writer[0] = allData[0]; // Time
-        writer[1] = allData[1]; // Coordinates.x
-        writer[2] = allData[2]; // Coordinates.y
-        writer[3] = allData[3]; // Coordinates.z
+        writer[0] = coordonates[0]; // Coordinates.x
+        writer[1] = coordonates[1]; // Coordinates.y
+        writer[2] = coordonates[2]; // Coordinates.z
+        writer[3] = anglesAndTime[0]; // Time
+        writer[4] = anglesAndTime[1]; // Angle1
+        writer[5] = anglesAndTime[2]; //Angle2
 
-        writer[4] = 0.15f;
-        writer[5] = 0.05f;
-        writer[6] = 12.1f;
-        writer[7] = 123.10012f;
-        writer[8] = 984.35f;
-        writer[9] = 567f;
-         
-
-        return 10; // Total number of observations written  // Total number of observations written
+        
+        return 6; // Total number of observations written  // Total number of observations written
     }
 
 
@@ -61,14 +56,16 @@ public class SoundSensor :  MonoBehaviour,ISensor
     {
         return m_Name;
     }
+
+    //Set and get are not used(functional)
      public void SetSoundData(Vector4 soundData)
     {
-        allData = soundData;
+        // allData = soundData;
     }
 
     public Vector4 GetSoundData()
     {
-        return allData;
+        return new Vector4();
     }
 
      void OnTriggerEnter(Collider other)
@@ -78,12 +75,35 @@ public class SoundSensor :  MonoBehaviour,ISensor
 
             DiskBehavior collidedObject = other.GetComponent<DiskBehavior>();
 
-            if ((collidedObject != null) && (collidedObject.getParentName() != transform.name))
-            {
-                float timeDelay = getTimeDelay(collidedObject);
+            if ((collidedObject != null) && (collidedObject.getParentName() != transform.name)){
+                GameObject reciever1 = null;
+                GameObject reciever2 = null;
+                //Sound coordinates
                 Vector3 soundPosition = collidedObject.transform.position;
-                Vector4 allData = new Vector4(timeDelay, soundPosition.x, soundPosition.y, soundPosition.z);  
-                this.allData = allData;
+                float timeDelay = getTimeDelay(collidedObject);
+
+                reciever1 = transform.gameObject;
+                if(transform.tag == "purpleAgent"){
+                    if(transform.name == "PurpleStriker"){
+                        reciever2 = GameObject.Find("PurpleStriker (1)");
+                    }else{
+                        reciever2 = GameObject.Find("PurpleStriker");
+                    }
+                }else if(transform.tag == "blueAgent"){
+                    if(transform.name == "BlueStriker"){
+                        reciever2 = GameObject.Find("BlueStriker (1)");
+                    }else{
+                        reciever2 = GameObject.Find("BlueStriker");
+                    }
+                }
+                
+                //Sound angles, time and coordinates
+                var(angle1, angle2) = getAngles(reciever1,reciever2,soundPosition); 
+                Vector3 anglesAndTime = new Vector3(timeDelay,angle1,angle2);
+                print(angle1);
+                print(angle2);
+                this.coordonates = soundPosition;
+                this.anglesAndTime = anglesAndTime;
                 //Write(writer);
             }
             else
@@ -93,14 +113,34 @@ public class SoundSensor :  MonoBehaviour,ISensor
         }
     }
 
-     float getTimeDelay(DiskBehavior collidedObject)
+
+    (float,float) getAngles(GameObject objectA,GameObject objectB,Vector3 soundPosition){
+        return (computeAngle(objectA, soundPosition), computeAngle(objectB, soundPosition));
+    }
+
+    float computeAngle(GameObject objectA, Vector3 diskCenter){
+
+        Vector3 forwardA = objectA.transform.forward;
+        forwardA.y = 0;
+
+        Vector3 radius = objectA.transform.position - diskCenter;
+        radius.y = 0;
+
+        forwardA.Normalize();
+        radius.Normalize();
+
+        float angle = Vector3.Angle(forwardA, radius);
+        return angle;
+    }
+
+    float getTimeDelay(DiskBehavior collidedObject)
     {
         float localTime = Time.time;
         float timeDelay = localTime - collidedObject.getCreationTime();
         return timeDelay;
     }
 
-     (float, float, float) getSoundPropagationCoordinates(DiskBehavior collidedObject)
+    (float, float, float) getSoundPropagationCoordinates(DiskBehavior collidedObject)
     {
         return (collidedObject.getXCoordinate(), collidedObject.getYCoordinate(), collidedObject.getZCoordinate());
     }
