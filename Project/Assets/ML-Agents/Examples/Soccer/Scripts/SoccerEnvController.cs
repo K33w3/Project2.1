@@ -113,6 +113,7 @@ public class SoccerEnvController : MonoBehaviour
         ResetScene();
 
     }
+    //TODO : Add group reward for bringing the ball further away from your own goal.  
 
 
     public void ResetScene()

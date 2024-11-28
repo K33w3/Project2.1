@@ -11,12 +11,14 @@ public class SoundSensor :  MonoBehaviour,ISensor
     private string m_Name;
     // private ObservationWriter writer;
     private Vector4 allData;
+    // private Vector3 angles;
+    // private Vector3 coordinates;   
     private ObservationSpec m_ObservationSpec;
 
     public SoundSensor(string name)
     {
         m_Name = name;
-        m_ObservationSpec = ObservationSpec.Vector(4); // 1 for Time, 3 for Coordinates
+        m_ObservationSpec = ObservationSpec.Vector(10); // 1 for Time, 3 for Coordinates
         // this.writer  = new ObservationWriter();
     }
 
@@ -33,7 +35,16 @@ public class SoundSensor :  MonoBehaviour,ISensor
         writer[1] = allData[1]; // Coordinates.x
         writer[2] = allData[2]; // Coordinates.y
         writer[3] = allData[3]; // Coordinates.z
-        return 4; // Total number of observations written  // Total number of observations written
+
+        writer[4] = 0.15f;
+        writer[5] = 0.05f;
+        writer[6] = 12.1f;
+        writer[7] = 123.10012f;
+        writer[8] = 984.35f;
+        writer[9] = 567f;
+         
+
+        return 10; // Total number of observations written  // Total number of observations written
     }
 
 
