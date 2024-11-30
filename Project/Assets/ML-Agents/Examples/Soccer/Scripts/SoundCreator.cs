@@ -9,7 +9,7 @@ public class SoundCreator : MonoBehaviour
     public float timeoutDuration = 5f;
     public float grouthRate = 0.3f;
     public float growthPeriod = 0.05f;
-    public float sizeToDieAt = 14f;
+    public float sizeToDieAt = 16f;
     private bool isTimeout = false;
 
 
