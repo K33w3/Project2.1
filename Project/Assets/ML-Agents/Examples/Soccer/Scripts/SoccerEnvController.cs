@@ -117,8 +117,8 @@ public class SoccerEnvController : MonoBehaviour
 
     private void AddDistanceBasedRewards()
     {
-        float blueGoalX = -1650f; 
-        float purpleGoalX = 1650f; 
+        float blueGoalX = -15.12f; 
+        float purpleGoalX = 15.12f; 
 
         float ballX = ball.transform.position.x;
 
