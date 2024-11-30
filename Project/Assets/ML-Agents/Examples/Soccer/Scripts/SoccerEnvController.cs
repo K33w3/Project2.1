@@ -82,6 +82,7 @@ public class SoccerEnvController : MonoBehaviour
             m_PurpleAgentGroup.GroupEpisodeInterrupted();
             ResetScene();
         }
+        AddDistanceBasedRewards();
     }
 
 
@@ -113,7 +114,22 @@ public class SoccerEnvController : MonoBehaviour
         ResetScene();
 
     }
-    //TODO : Add group reward for bringing the ball further away from your own goal.  
+
+    private void AddDistanceBasedRewards()
+    {
+        float blueGoalX = -15.12f; 
+        float purpleGoalX = 15.12f; 
+
+        float ballX = ball.transform.position.x;
+
+     
+        float distanceFromBlueGoal = Mathf.Abs(ballX - blueGoalX);
+        float distanceFromPurpleGoal = Mathf.Abs(ballX - purpleGoalX);
+
+       
+        m_BlueAgentGroup.AddGroupReward(distanceFromBlueGoal / 1000f); 
+        m_PurpleAgentGroup.AddGroupReward(distanceFromPurpleGoal / 1000f);
+    }
 
 
     public void ResetScene()
