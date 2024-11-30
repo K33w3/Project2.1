@@ -299,9 +299,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 25743880, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_TagString
+      value: SoundOnColide
+      objectReference: {fileID: 0}
+    - target: {fileID: 129409745, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_TagString
+      value: SoundOnColide
+      objectReference: {fileID: 0}
+    - target: {fileID: 309062024, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_TagString
+      value: SoundOnColide
+      objectReference: {fileID: 0}
+    - target: {fileID: 459835897, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_TagString
+      value: SoundOnColide
+      objectReference: {fileID: 0}
+    - target: {fileID: 695073581, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_TagString
+      value: SoundOnColide
+      objectReference: {fileID: 0}
+    - target: {fileID: 905539299, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_TagString
+      value: SoundOnColide
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013497679, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730970186, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_TagString
+      value: wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1141134673700168, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_Name
       value: SoccerFieldTwos
+      objectReference: {fileID: 0}
+    - target: {fileID: 4540201673231058, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 4558743310993102, guid: 54f3340298537426e96a6cc530e2d5d8, type: 3}
       propertyPath: m_RootOrder
@@ -386,6 +422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MaxRayDegrees
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493826289141266471, guid: 54f3340298537426e96a6cc530e2d5d8,
+        type: 3}
+      propertyPath: timeoutDuration
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
