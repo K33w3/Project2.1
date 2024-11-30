@@ -117,14 +117,14 @@ public class SoccerEnvController : MonoBehaviour
 
     private void AddDistanceBasedRewards()
     {
-        float blueGoalZ = -10f; 
-        float purpleGoalZ = 10f; 
+        float blueGoalX = -1650f; 
+        float purpleGoalX = 1650f; 
 
-        float ballZ = ball.transform.position.z;
+        float ballX = ball.transform.position.x;
 
         // Calculate distance from each goal
-        float distanceFromBlueGoal = Mathf.Abs(ballZ - blueGoalZ);
-        float distanceFromPurpleGoal = Mathf.Abs(ballZ - purpleGoalZ);
+        float distanceFromBlueGoal = Mathf.Abs(ballX - blueGoalX);
+        float distanceFromPurpleGoal = Mathf.Abs(ballX - purpleGoalX);
 
         // Reward teams based on the distance of the ball from their own goal
         m_BlueAgentGroup.AddGroupReward(distanceFromBlueGoal / 1000f); 
