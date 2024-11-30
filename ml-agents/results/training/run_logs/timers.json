@@ -1,0 +1,49 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1732978491",
+        "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\amuri\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\mlagents-learn C:\\Users\\amuri\\Desktop\\Project2.1\\Project2.1\\config\\poca\\SoccerTwos.yaml --run-id=training --resume",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.5.1+cpu",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1732978509"
+    },
+    "total": 18.944698499995866,
+    "count": 1,
+    "self": 0.005001700003049336,
+    "children": {
+        "run_training.setup": {
+            "total": 0.061332400000537746,
+            "count": 1,
+            "self": 0.061332400000537746
+        },
+        "TrainerController.start_learning": {
+            "total": 18.87836439999228,
+            "count": 1,
+            "self": 7.539999205619097e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 18.790346599998884,
+                    "count": 1,
+                    "self": 18.790346599998884
+                },
+                "TrainerController._save_models": {
+                    "total": 0.08794240000133868,
+                    "count": 1,
+                    "self": 0.006699200006551109,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.08124319999478757,
+                            "count": 1,
+                            "self": 0.08124319999478757
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
