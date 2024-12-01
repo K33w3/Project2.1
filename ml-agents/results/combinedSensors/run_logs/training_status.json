@@ -1,34 +1,7 @@
 {
     "SoccerTwos": {
-        "elo": 1193.8483991046219,
+        "elo": 1189.7891785539048,
         "checkpoints": [
-            {
-                "steps": 8499282,
-                "file_path": "results\\combinedSensors\\SoccerTwos\\SoccerTwos-8499282.onnx",
-                "reward": 0.0,
-                "creation_time": 1732991261.8278542,
-                "auxillary_file_paths": [
-                    "results\\combinedSensors\\SoccerTwos\\SoccerTwos-8499282.pt"
-                ]
-            },
-            {
-                "steps": 8999593,
-                "file_path": "results\\combinedSensors\\SoccerTwos\\SoccerTwos-8999593.onnx",
-                "reward": 0.0,
-                "creation_time": 1732992042.9011023,
-                "auxillary_file_paths": [
-                    "results\\combinedSensors\\SoccerTwos\\SoccerTwos-8999593.pt"
-                ]
-            },
-            {
-                "steps": 9499783,
-                "file_path": "results\\combinedSensors\\SoccerTwos\\SoccerTwos-9499783.onnx",
-                "reward": 0.0,
-                "creation_time": 1732992815.0321028,
-                "auxillary_file_paths": [
-                    "results\\combinedSensors\\SoccerTwos\\SoccerTwos-9499783.pt"
-                ]
-            },
             {
                 "steps": 9999142,
                 "file_path": "results\\combinedSensors\\SoccerTwos\\SoccerTwos-9999142.onnx",
@@ -46,15 +19,42 @@
                 "auxillary_file_paths": [
                     "results\\combinedSensors\\SoccerTwos\\SoccerTwos-10067210.pt"
                 ]
+            },
+            {
+                "steps": 10499836,
+                "file_path": "results\\combinedSensors\\SoccerTwos\\SoccerTwos-10499836.onnx",
+                "reward": null,
+                "creation_time": 1733002863.4032469,
+                "auxillary_file_paths": [
+                    "results\\combinedSensors\\SoccerTwos\\SoccerTwos-10499836.pt"
+                ]
+            },
+            {
+                "steps": 10999636,
+                "file_path": "results\\combinedSensors\\SoccerTwos\\SoccerTwos-10999636.onnx",
+                "reward": 0.0,
+                "creation_time": 1733003623.1169186,
+                "auxillary_file_paths": [
+                    "results\\combinedSensors\\SoccerTwos\\SoccerTwos-10999636.pt"
+                ]
+            },
+            {
+                "steps": 11092728,
+                "file_path": "results\\combinedSensors\\SoccerTwos\\SoccerTwos-11092728.onnx",
+                "reward": 0.0,
+                "creation_time": 1733003762.6065283,
+                "auxillary_file_paths": [
+                    "results\\combinedSensors\\SoccerTwos\\SoccerTwos-11092728.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 10067210,
+            "steps": 11092728,
             "file_path": "results\\combinedSensors\\SoccerTwos.onnx",
-            "reward": null,
-            "creation_time": 1732993694.1524377,
+            "reward": 0.0,
+            "creation_time": 1733003762.6065283,
             "auxillary_file_paths": [
-                "results\\combinedSensors\\SoccerTwos\\SoccerTwos-10067210.pt"
+                "results\\combinedSensors\\SoccerTwos\\SoccerTwos-11092728.pt"
             ]
         }
     },

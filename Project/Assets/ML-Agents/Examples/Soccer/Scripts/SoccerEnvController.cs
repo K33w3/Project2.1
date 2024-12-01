@@ -82,7 +82,7 @@ public class SoccerEnvController : MonoBehaviour
             m_PurpleAgentGroup.GroupEpisodeInterrupted();
             ResetScene();
         }
-        AddDistanceBasedRewards();
+        //AddDistanceBasedRewards();
     }
 
 
@@ -115,7 +115,7 @@ public class SoccerEnvController : MonoBehaviour
 
     }
 
-    private void AddDistanceBasedRewards()
+    /*private void AddDistanceBasedRewards()
     {
         float blueGoalX = -15.12f; 
         float purpleGoalX = 15.12f; 
@@ -129,7 +129,7 @@ public class SoccerEnvController : MonoBehaviour
        
         m_BlueAgentGroup.AddGroupReward(distanceFromBlueGoal / 1000f); 
         m_PurpleAgentGroup.AddGroupReward(distanceFromPurpleGoal / 1000f);
-    }
+    }*/
 
 
     public void ResetScene()
