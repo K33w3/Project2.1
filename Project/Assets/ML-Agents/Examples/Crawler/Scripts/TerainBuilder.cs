@@ -23,7 +23,7 @@ public class TerainBuilder : MonoBehaviour
     
         // Get the scale of the GameObject to which this script is attached
         Vector3 floorScale = transform.localScale;
-        Vector3 floorPosition = transform.localPosition;
+        Vector3 floorPosition = transform.position;
 
         float numberOfSquaresX = matrix.Length;  
         float numberOfSquaresZ = matrix[0].Length;       
@@ -33,8 +33,8 @@ public class TerainBuilder : MonoBehaviour
         float shapeLengthZ = floorScale.z/matrix[0].Length;
 
         // Geeting the minimum square coordinate
-        float startingCoordinateX = (shapeLengthX/2)-(floorScale.x/2);//----------->+floorPosition.x
-        float startingCoordinateZ = (shapeLengthZ/2)-(floorScale.z/2);//----------->+floorPosition.z
+        float startingCoordinateX = (shapeLengthX/2)-(floorScale.x/2)+floorPosition.x;//----------->+floorPosition.x
+        float startingCoordinateZ = (shapeLengthZ/2)-(floorScale.z/2)+floorPosition.z;//----------->+floorPosition.z
 
         // Geeting the coordinates list
         for (int i = 0; i < numberOfSquaresX; i++){
