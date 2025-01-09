@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1736444752",
+        "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\amuri\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\mlagents-learn C:\\Users\\amuri\\Desktop\\Project2.1\\Project2.1\\config\\sac\\Crawler.yaml --run-id=CrawlerTraining",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.5.1+cpu",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1736444760"
+    },
+    "total": 8.62112049999996,
+    "count": 1,
+    "self": 0.004772399999637855,
+    "children": {
+        "run_training.setup": {
+            "total": 0.07537439999941853,
+            "count": 1,
+            "self": 0.07537439999941853
+        },
+        "TrainerController.start_learning": {
+            "total": 8.540973700000905,
+            "count": 1,
+            "self": 8.320000051753595e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 8.540878100000555,
+                    "count": 1,
+                    "self": 8.540878100000555
+                },
+                "TrainerController._save_models": {
+                    "total": 1.2399999832268804e-05,
+                    "count": 1,
+                    "self": 1.2399999832268804e-05
+                }
+            }
+        }
+    }
+}
