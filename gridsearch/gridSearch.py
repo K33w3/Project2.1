@@ -3,16 +3,10 @@ import subprocess
 import yaml
 from mlagents_envs.environment import UnityEnvironment
 
-ppo_result_file_path = 'ppoPath.csv'
-sac_result_file_path = 'sacPath.csv'
+# if you want to run ppo or sac just call the coresponding method, with the chosen environment as a parameter
 
 
-# if you want to change the environment, you need no create a new change_yaml_file_ppo specific for that env
-# and also the ppo and sac run methods should have the environments and config file changed
-
-# Hyperparameter grid for PPO
 ppo_param_grid = {
-    'algorithm': "PPO",
     'learning_rate': [0.0001, 0.0005, 0.001, 0.003, 0.01],
     'gamma': [0.9, 0.95, 0.99],
     'batch_size': [64, 128, 256],
@@ -25,7 +19,6 @@ ppo_param_grid = {
 
 # Hyperparameter grid for SAC
 sac_param_grid = {
-    'algorithm': "SAC",
     'learning_rate': [0.0001, 0.0005, 0.001, 0.003, 0.01],
     'gamma': [0.9, 0.95, 0.99],
     'batch_size': [64, 128, 256],
@@ -35,7 +28,7 @@ sac_param_grid = {
 }
 
 
-def train_ml_agents(config_path, run_id, environment_name, max_episodes=10000, reward_threshold=None):
+def train_ml_agents(config_path, run_id, environment_name, reward_threshold=None,max_episodes = 500):
     """
     Train Unity ML-Agents and monitor average reward.
 
@@ -95,51 +88,60 @@ def train_ml_agents(config_path, run_id, environment_name, max_episodes=10000, r
     # Wait for process to finish
     process.wait()
 
-    # Calculate and return final average reward from the last 100 episodes
+    # Calculate and return final average reward from the last 50 episodes
     if cumulative_rewards:
-        avg_reward = sum(cumulative_rewards[-100:]) / len(cumulative_rewards[-100:])
-        print(f"Final Average Reward (Last 100 Episodes): {avg_reward:.2f}")
+        avg_reward = sum(cumulative_rewards[-50:]) / len(cumulative_rewards[-50:])
+        print(f"Final Average Reward (Last 50 Episodes): {avg_reward:.2f}")
         return avg_reward
     else:
         print("No rewards collected.")
         return None
 
-def ppo_grid_search(param_grid,config_path="./config/ppo/Crawler.yaml",environment_name="Crawler"):
+def ppo_grid_search(environment_name,param_grid=ppo_param_grid):
+
+    config_path = ""
+    ppo_result_file_path = ""
+
+    if(environment_name == "Crawler"):
+        config_path = "./config/ppo/Crawler.yaml"
+        ppo_result_file_path = "ppo_crawler_data_path.csv"
+    elif (environment_name == "PushBlock"):
+        config_path = "./config/ppo/PushBlock.yaml"
+        ppo_result_file_path = "ppo_pushblock_data_path.csv"
     
     # Track results
+    algorithm_name = "PPO"
     results = []
     counter = 1
     # Perform grid search
-    for alg in param_grid['algorithm']:
-        for lr in param_grid['learning_rate']:
-            for gamma in param_grid['gamma']:
-                for batch in param_grid['batch_size']:
-                    for units in param_grid['hidden_units']:
-                        for ne in param_grid['num_epoch']:
-                            for gl in param_grid['lambd']:
+    for lr in param_grid['learning_rate']:
+        for gamma in param_grid['gamma']:
+            for batch in param_grid['batch_size']:
+                for units in param_grid['hidden_units']:
+                    for ne in param_grid['num_epoch']:
+                        for gl in param_grid['lambd']:
 
-                                change_yaml_file_ppo(lr,gamma,batch,units,ne,gl,config_path)
+                            change_yaml_file(lr,gamma,batch,units,ne,gl,config_path,environment_name,algorithm_name)
 
-                                avg_reward = train_ml_agents(
-                                    config_path,
-                                    "ppo"+str(counter)
-                                    ,
-                                    environment_name,
-                                    1000
-                                )
-                                
-                                # Log results
-                                results.append({
-                                    'algorithm': alg,
-                                    'learning_rate': lr,
-                                    'gamma': gamma,
-                                    'batch_size': batch,
-                                    'hidden_units': units,
-                                    'num_epoch': ne,
-                                    'lambd': gl,
-                                    'avg_reward': avg_reward
-                                })
-                                counter+=1
+                            avg_reward = train_ml_agents(
+                                config_path,
+                                "ppo"+str(counter)
+                                ,
+                                environment_name
+                            )
+                            
+                            # Log results
+                            results.append({
+                                'learning_rate': lr,
+                                'gamma': gamma,
+                                'batch_size': batch,
+                                'hidden_units': units,
+                                'num_epoch': ne,
+                                'lambd': gl,
+                                'avg_reward': avg_reward,
+                                'configuration_number': counter
+                            })
+                            counter+=1
 
 
     # Sort the results from best to worst based on 'avg_reward'
@@ -155,40 +157,49 @@ def ppo_grid_search(param_grid,config_path="./config/ppo/Crawler.yaml",environme
 
 
 
-def sac_grid_search(param_grid,config_path="./config/sac/Crawler.yaml",environment_name="Crawler",):
+def sac_grid_search(environment_name,param_grid=sac_param_grid):
+
+    config_path = "./config/sac/Crawler.yaml"
+    sac_result_file_path = ""
+
+    if(environment_name == "Crawler"):
+        config_path = "./config/sac/Crawler.yaml"
+        sac_result_file_path = "sac_crawler_data_path.csv"
+    elif (environment_name == "PushBlock"):
+        config_path = "./config/sac/PushBlock.yaml"
+        sac_result_file_path = "sac_pushblock_data_path.csv"
 
     # Track results
     results = []
     counter = 1
+    algorithm_name = "SAC"
     # Perform grid search
-    for alg in param_grid['algorithm']:
-        for lr in param_grid['learning_rate']:
-            for gamma in param_grid['gamma']:
-                for batch in param_grid['batch_size']:
-                    for units in param_grid['hidden_units']:
-                        for temp in param_grid['init_entcoef']:
-                            for rbs in param_grid['buffer_size']:
+    for lr in param_grid['learning_rate']:
+        for gamma in param_grid['gamma']:
+            for batch in param_grid['batch_size']:
+                for units in param_grid['hidden_units']:
+                    for temp in param_grid['init_entcoef']:
+                        for rbs in param_grid['buffer_size']:
 
-                                change_yaml_file_sac(lr,gamma,batch,units,temp,rbs,config_path)
+                            change_yaml_file(lr,gamma,batch,units,temp,rbs,config_path,environment_name,algorithm_name)
 
-                                avg_reward = train_ml_agents(
-                                    config_path,
-                                    "ppo"+str(counter),
-                                    environment_name,
-                                    1000
-                                )
+                            avg_reward = train_ml_agents(
+                                config_path,
+                                "sac"+str(counter),
+                                environment_name
+                            )
 
-                                results.append({
-                                    'algorithm': alg,
-                                    'learning_rate': lr,
-                                    'gamma': gamma,
-                                    'batch_size': batch,
-                                    'hidden_units': units,
-                                    'init_entcoef': temp,
-                                    'buffer_size': rbs,
-                                    'avg_reward': avg_reward
-                                })
-                                counter+=1
+                            results.append({
+                                'learning_rate': lr,
+                                'gamma': gamma,
+                                'batch_size': batch,
+                                'hidden_units': units,
+                                'init_entcoef': temp,
+                                'buffer_size': rbs,
+                                'avg_reward': avg_reward,
+                                'configuration_number': counter
+                            })
+                            counter+=1
 
 
     # Sort the results from best to worst based on 'avg_reward'
@@ -202,41 +213,40 @@ def sac_grid_search(param_grid,config_path="./config/sac/Crawler.yaml",environme
     return sorted_results
 
 
-def change_yaml_file_ppo(learning_rate,gamma,batch_size,hidden_units,num_epoch,lambd,path):# crawler    ,path="./config/ppo/Crawler.yaml"
+def change_yaml_file(learning_rate,gamma,batch_size,hidden_units,param5,param6,path,environment_name,algorithm_name):# crawler    ,path="./config/ppo/Crawler.yaml"
+
+    param5_name = ""
+    param6_name = ""
+
+    if algorithm_name == "PPO":
+        param5_name = "num_epoch"
+        param6_name = "lambd"
+    elif algorithm_name == "SAC":
+        param5_name = "init_entcoef"
+        param6_name = "buffer_size"
+    
+    print(algorithm_name)
+    
     # Load the YAML file
     with open(path, "r") as file:
         data = yaml.safe_load(file)
 
     # Update the data
-    data['behaviors']['Crawler']['hyperparameters']['learning_rate'] = learning_rate
-    data['behaviors']['Crawler']['reward_signals']['extrinsic']['gamma'] = gamma
-    data['behaviors']['Crawler']['hyperparameters']['batch_size'] = batch_size
-    data['behaviors']['Crawler']['network_settings']['hidden_units'] = hidden_units
-    data['behaviors']['Crawler']['hyperparameters']['num_epoch'] = num_epoch
-    data['behaviors']['Crawler']['hyperparameters']['lambd'] = lambd
+    data['behaviors'][environment_name]['hyperparameters']['learning_rate'] = learning_rate
+    data['behaviors'][environment_name]['reward_signals']['extrinsic']['gamma'] = gamma
+    data['behaviors'][environment_name]['hyperparameters']['batch_size'] = batch_size
+    data['behaviors'][environment_name]['network_settings']['hidden_units'] = hidden_units
+    if param5_name == "":
+        print("Parameters 5 and 6, empty")
+
+    data['behaviors'][environment_name]['hyperparameters'][param5_name] = param5
+    data['behaviors'][environment_name]['hyperparameters'][param6_name] = param6
 
     # Write the updated data back to the YAML file
     with open(path, "w") as file:
         yaml.safe_dump(data, file, default_flow_style=False)
 
 
-
-def change_yaml_file_sac(learning_rate,gamma,batch_size,hidden_units,init_entcoef,buffer_size,path):# crawler  ="./config/sac/Crawler.yaml"
-    # Load the YAML file
-    with open(path, "r") as file:
-        data = yaml.safe_load(file)
-
-    # Update the data
-    data['behaviors']['Crawler']['hyperparameters']['learning_rate'] = learning_rate
-    data['behaviors']['Crawler']['reward_signals']['extrinsic']['gamma'] = gamma
-    data['behaviors']['Crawler']['hyperparameters']['batch_size'] = batch_size
-    data['behaviors']['Crawler']['network_settings']['hidden_units'] = hidden_units
-    data['behaviors']['Crawler']['hyperparameters']['init_entcoef'] = init_entcoef
-    data['behaviors']['Crawler']['hyperparameters']['buffer_size'] = buffer_size
-
-    # Write the updated data back to the YAML file
-    with open(path, "w") as file:
-        yaml.safe_dump(data, file, default_flow_style=False)
 
 
 def store_results(result_store_file,data):
@@ -246,24 +256,8 @@ def store_results(result_store_file,data):
         writer.writerows(data)
 
 
-def read_results_from_file(result_store_file):
-    with open(result_store_file, mode='r') as file:
-        # Initialize the CSV reader
-        reader = csv.DictReader(file)
-        
-        # Convert the rows to a list of dictionaries
-        data = [row for row in reader]
-        
-        # Optional: Convert numeric values back to the appropriate types
-        for row in data:
-            for key, value in row.items():
-                try:
-                    # Convert to float if possible, otherwise leave as string
-                    row[key] = float(value) if '.' in value or value.isdigit() else value
-                except ValueError:
-                    pass  # Keep the value as a string if conversion fails
-        
-        return data
 
-
-ppo_grid_search(ppo_param_grid)
+ppo_grid_search("Crawler")
+# sac_grid_search("Crawler")
+# ppo_grid_search("PushBlock")
+# sac_grid_search("PushBlock")
