@@ -28,7 +28,7 @@ sac_param_grid = {
 }
 
 
-def train_ml_agents(config_path, run_id, environment_name, reward_threshold=None,max_episodes = 500):
+def train_ml_agents(config_path, run_id, environment_name, reward_threshold=None):
     """
     Train Unity ML-Agents and monitor average reward.
 
@@ -75,11 +75,11 @@ def train_ml_agents(config_path, run_id, environment_name, reward_threshold=None
                 except ValueError:
                     continue
 
-            # Check episode limit
-            if len(cumulative_rewards) >= max_episodes:
-                print(f"Maximum episodes {max_episodes} reached. Stopping training.")
-                process.terminate()
-                break
+            # # Check episode limit
+            # if len(cumulative_rewards) >= max_episodes:
+            #     print(f"Maximum episodes {max_episodes} reached. Stopping training.")
+            #     process.terminate()
+            #     break
 
     except KeyboardInterrupt:
         print("Training interrupted manually.")
@@ -88,10 +88,10 @@ def train_ml_agents(config_path, run_id, environment_name, reward_threshold=None
     # Wait for process to finish
     process.wait()
 
-    # Calculate and return final average reward from the last 50 episodes
+    # Calculate and return final average reward from the last 100 episodes
     if cumulative_rewards:
-        avg_reward = sum(cumulative_rewards[-50:]) / len(cumulative_rewards[-50:])
-        print(f"Final Average Reward (Last 50 Episodes): {avg_reward:.2f}")
+        avg_reward = sum(cumulative_rewards[-100:]) / len(cumulative_rewards[-100:])
+        print(f"Final Average Reward (Last 100 Episodes): {avg_reward:.2f}")
         return avg_reward
     else:
         print("No rewards collected.")
@@ -232,6 +232,7 @@ def change_yaml_file(learning_rate,gamma,batch_size,hidden_units,param5,param6,p
         data = yaml.safe_load(file)
 
     # Update the data
+    data['behaviors'][environment_name]['max_steps'] = 1000
     data['behaviors'][environment_name]['hyperparameters']['learning_rate'] = learning_rate
     data['behaviors'][environment_name]['reward_signals']['extrinsic']['gamma'] = gamma
     data['behaviors'][environment_name]['hyperparameters']['batch_size'] = batch_size
