@@ -64,6 +64,7 @@
 *.eggs*
 *.gitignore.swp
 
-
+# VSCode hidden files
+*.vscode/
 
 .DS_Store
