@@ -2,24 +2,6 @@
     "Crawler": {
         "checkpoints": [
             {
-                "steps": 19999000,
-                "file_path": "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-19999000.onnx",
-                "reward": 1778.252965037028,
-                "creation_time": 1737295892.5141997,
-                "auxillary_file_paths": [
-                    "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-19999000.pt"
-                ]
-            },
-            {
-                "steps": 20006000,
-                "file_path": "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20006000.onnx",
-                "reward": 1776.6922654238615,
-                "creation_time": 1737295892.969664,
-                "auxillary_file_paths": [
-                    "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20006000.pt"
-                ]
-            },
-            {
                 "steps": 20083000,
                 "file_path": "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20083000.onnx",
                 "reward": 1773.4041193181818,
@@ -45,15 +27,33 @@
                 "auxillary_file_paths": [
                     "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20222000.pt"
                 ]
+            },
+            {
+                "steps": 20499000,
+                "file_path": "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20499000.onnx",
+                "reward": 1701.6578040489783,
+                "creation_time": 1737463036.0668325,
+                "auxillary_file_paths": [
+                    "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20499000.pt"
+                ]
+            },
+            {
+                "steps": 20519000,
+                "file_path": "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20519000.onnx",
+                "reward": 1594.2846414804458,
+                "creation_time": 1737463066.4507377,
+                "auxillary_file_paths": [
+                    "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20519000.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 20222000,
+            "steps": 20519000,
             "file_path": "results\\PPO_CrawlerTraining1\\Crawler.onnx",
-            "reward": 1975.3204752604167,
-            "creation_time": 1737321196.5238998,
+            "reward": 1594.2846414804458,
+            "creation_time": 1737463066.4507377,
             "auxillary_file_paths": [
-                "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20222000.pt"
+                "results\\PPO_CrawlerTraining1\\Crawler\\Crawler-20519000.pt"
             ]
         }
     },

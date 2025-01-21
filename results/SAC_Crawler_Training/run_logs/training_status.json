@@ -2,15 +2,6 @@
     "Crawler": {
         "checkpoints": [
             {
-                "steps": 19499000,
-                "file_path": "results\\SAC_Crawler_Training\\Crawler\\Crawler-19499000.onnx",
-                "reward": 704.688879860772,
-                "creation_time": 1737279100.135047,
-                "auxillary_file_paths": [
-                    "results\\SAC_Crawler_Training\\Crawler\\Crawler-19499000.pt"
-                ]
-            },
-            {
                 "steps": 19999000,
                 "file_path": "results\\SAC_Crawler_Training\\Crawler\\Crawler-19999000.onnx",
                 "reward": 728.0053031709459,
@@ -45,15 +36,24 @@
                 "auxillary_file_paths": [
                     "results\\SAC_Crawler_Training\\Crawler\\Crawler-20164000.pt"
                 ]
+            },
+            {
+                "steps": 20208000,
+                "file_path": "results\\SAC_Crawler_Training\\Crawler\\Crawler-20208000.onnx",
+                "reward": null,
+                "creation_time": 1737465095.6585145,
+                "auxillary_file_paths": [
+                    "results\\SAC_Crawler_Training\\Crawler\\Crawler-20208000.pt"
+                ]
             }
         ],
         "final_checkpoint": {
-            "steps": 20164000,
+            "steps": 20208000,
             "file_path": "results\\SAC_Crawler_Training\\Crawler.onnx",
             "reward": null,
-            "creation_time": 1737319963.6953661,
+            "creation_time": 1737465095.6585145,
             "auxillary_file_paths": [
-                "results\\SAC_Crawler_Training\\Crawler\\Crawler-20164000.pt"
+                "results\\SAC_Crawler_Training\\Crawler\\Crawler-20208000.pt"
             ]
         }
     },
