@@ -100,6 +100,8 @@ Follow the steps below to set up the required tools and dependencies:
 2. Open the Unity project in the Unity Editor.
 3. Run the example ML-Agents environments to confirm setup.
 
+*Please note that the model training for Push Block is currently on a different branch.*
+
 ---
 
 ## Documentation

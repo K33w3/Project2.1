@@ -1,0 +1,65 @@
+{
+    "Crawler": {
+        "checkpoints": [
+            {
+                "steps": 19999000,
+                "file_path": "results\\SAC_Crawler_Training\\Crawler\\Crawler-19999000.onnx",
+                "reward": 728.0053031709459,
+                "creation_time": 1737280463.3567486,
+                "auxillary_file_paths": [
+                    "results\\SAC_Crawler_Training\\Crawler\\Crawler-19999000.pt"
+                ]
+            },
+            {
+                "steps": 20010000,
+                "file_path": "results\\SAC_Crawler_Training\\Crawler\\Crawler-20010000.onnx",
+                "reward": 1291.7050201416016,
+                "creation_time": 1737280490.5536733,
+                "auxillary_file_paths": [
+                    "results\\SAC_Crawler_Training\\Crawler\\Crawler-20010000.pt"
+                ]
+            },
+            {
+                "steps": 20010000,
+                "file_path": "results\\SAC_Crawler_Training\\Crawler\\Crawler-20010000.onnx",
+                "reward": null,
+                "creation_time": 1737286906.0671184,
+                "auxillary_file_paths": [
+                    "results\\SAC_Crawler_Training\\Crawler\\Crawler-20010000.pt"
+                ]
+            },
+            {
+                "steps": 20164000,
+                "file_path": "results\\SAC_Crawler_Training\\Crawler\\Crawler-20164000.onnx",
+                "reward": null,
+                "creation_time": 1737319963.6953661,
+                "auxillary_file_paths": [
+                    "results\\SAC_Crawler_Training\\Crawler\\Crawler-20164000.pt"
+                ]
+            },
+            {
+                "steps": 20208000,
+                "file_path": "results\\SAC_Crawler_Training\\Crawler\\Crawler-20208000.onnx",
+                "reward": null,
+                "creation_time": 1737465095.6585145,
+                "auxillary_file_paths": [
+                    "results\\SAC_Crawler_Training\\Crawler\\Crawler-20208000.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 20208000,
+            "file_path": "results\\SAC_Crawler_Training\\Crawler.onnx",
+            "reward": null,
+            "creation_time": 1737465095.6585145,
+            "auxillary_file_paths": [
+                "results\\SAC_Crawler_Training\\Crawler\\Crawler-20208000.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cpu"
+    }
+}
