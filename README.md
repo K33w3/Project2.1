@@ -106,7 +106,6 @@ Follow the steps below to set up the required tools and dependencies:
 
 Documentation for this project is available in the repository:
 - **[Setup Guide](docs/Getting-Started.md)**: Step-by-step installation and setup instructions.
-- **[Experiments Guide](docs/experiments-guide.md)**: Details on training algorithms, sensor modifications, and performance analysis.
 
 ---
 
@@ -114,29 +113,22 @@ Documentation for this project is available in the repository:
 
 For questions or feedback, contact the project contributors:
 - **Contributor Name**: Alvaro Murillo Terre  
-  **Email**:   
-  **GitHub**: [Your GitHub Profile](https://github.com/Alvaro-Murillo)
+  **GitHub**: [Alvaro Murillo Terre GitHub Profile](https://github.com/Alvaro-Murillo)
 
 - **Contributor Name**: Cojocaru Cristian  
-  **Email**:   
-  **GitHub**: [Your GitHub Profile](https://github.com/cristic0j)
+  **GitHub**: [Cojocaru Cristian GitHub Profile](https://github.com/cristic0j)
 
 - **Contributor Name**: Eugeniu Gheorghita 
-  **Email**:   
-  **GitHub**: [Your GitHub Profile](https://github.com/EugeniuGh)
+  **GitHub**: [Eugeniu Gheorghita GitHub Profile](https://github.com/EugeniuGh)
 
 - **Contributor Name**: Andrei Visoiu  
-  **Email**:   
-  **GitHub**: [Your GitHub Profile](https://github.com/K33w3)
+  **GitHub**: [Andrei Visoiu GitHub Profile](https://github.com/K33w3)
 
 - **Contributor Name**: Khaled Ismail 
-  **Email**:   
-  **GitHub**: [Your GitHub Profile](https://github.com/KHALEDism-17)
+  **GitHub**: [Khaled Ismail GitHub Profile](https://github.com/KHALEDism-17)
 
 - **Contributor Name**: Bogdan Sirbu  
-  **Email**:   
-  **GitHub**: [Your GitHub Profile](https://github.com/RocketFuel7)
+  **GitHub**: [Bogdan Sirbu GitHub Profile](https://github.com/RocketFuel7)
 
 - **Contributor Name**: Yusuf Serhat Ozkan  
-  **Email**:   
-  **GitHub**: [Your GitHub Profile](https://github.com/yusufserhatozkan)
+  **GitHub**: [Yusuf Serhat Ozkan GitHub Profile](https://github.com/yusufserhatozkan)
