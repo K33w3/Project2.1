@@ -15,14 +15,8 @@ This guide provides details on the experiments conducted to compare the performa
   - Rotation difference between the agent and the cube.
   - Position of the target relative to the cube's orientation.
 - **Reward Structure**:
-  - **LookAtTargetReward**: Encourages the agent to face the target:
-    \[
-    \text{lookAtTargetReward} = \frac{(\text{CubeForward} \cdot \text{BodyForward}) + 1}{2}
-    \]
-  - **MatchSpeedReward**: Rewards speed alignment with the target's direction:
-    \[
-    \text{matchSpeedReward} = \text{GetMatchingVelocityReward}(\text{CubeForward} \times \text{TargetWalkingSpeed}, \text{GetAvgVelocity})
-    \]
+  - **LookAtTargetReward**: Encourages the agent to face the target.
+  - **MatchSpeedReward**: Rewards speed alignment with the target's direction.
 - **Reward Threshold**: 1000 cumulative reward marks successful training.
 - **Environment Modifications**: Introduced random terrain generation to increase complexity.
 
@@ -38,10 +32,7 @@ This guide provides details on the experiments conducted to compare the performa
   - Relative positions such as block-to-target and agent-to-block.
 - **Reward Structure**:
   - **Goal Reward**: +5 for successfully pushing the block into the target.
-  - **Step Penalty**: Penalized per step to encourage efficiency:
-    \[
-    \frac{-1}{\text{MaxStep}}
-    \]
+  - **Step Penalty**: Penalized per step to encourage efficiency.
 - **Reward Threshold**: 4.5 cumulative reward marks successful training.
 - **Environment Modifications**: Default setup retained, as it was sufficiently challenging.
 
@@ -57,7 +48,7 @@ This guide provides details on the experiments conducted to compare the performa
 | Neural Network Sizes      | 512 (Hidden Units)   | 512 (Hidden Units)  | 256 (Hidden Units)    | 512 (Hidden Units)    |
 | Batch Size               | 2048                 | 256                 | 128                   | 128                   |
 | Entropy Coefficient      | ---                  | 1.0                 | ---                   | 0.05                  |
-| Discount Factor (\(\gamma\)) | 0.95             | 0.95                | 0.99                  | 0.99                  |
+| Discount Factor | 0.95             | 0.95                | 0.99                  | 0.99                  |
 
 ---
 
@@ -138,4 +129,3 @@ The experiments revealed that:
 - **SAC** is more robust in complex environments requiring extensive exploration, albeit at higher computational costs.
 
 ---
-Ex
