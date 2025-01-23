@@ -46,9 +46,9 @@ def train_ml_agents(config_path, run_id, environment_name, reward_threshold=None
     command = [
         "mlagents-learn",
         config_path,
-        "--run-id", run_id,
-        "--env", environment_name,
-        "--train"
+        "--run-id", run_id
+        #"--env", environment_name,
+       # "--train"
     ]
 
     # Run the command
